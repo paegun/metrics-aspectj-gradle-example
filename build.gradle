@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://maven.eveoh.nl/content/repositories/releases"
+        }
+    }
+
+    dependencies {
+        classpath 'nl.eveoh:gradle-aspectj:1.6'
+    }
+}
+
+plugins {
+}
+
+project.ext {
+    aspectjVersion = '1.8.10'
+}
+
+ext {
+    metricsVer = '3.2.2'
+    metricsAspectVer = '1.2.0'
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'aspectj'
+apply plugin: 'application'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile "io.astefanutti.metrics.aspectj:metrics-aspectj:${metricsAspectVer}"
+    aspectpath "io.astefanutti.metrics.aspectj:metrics-aspectj:${metricsAspectVer}"
+
+    compile "io.dropwizard.metrics:metrics-core:${metricsVer}"
+    compile "io.dropwizard.metrics:metrics-annotation:${metricsVer}"
+    compile "io.dropwizard.metrics:metrics-jersey2:${metricsVer}"
+
+    testCompile 'junit:junit:4.12'
+}
+
+mainClassName = 'App'
