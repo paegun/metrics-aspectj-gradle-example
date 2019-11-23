@@ -11,7 +11,7 @@ buildscript {
 }
 
 project.ext {
-    aspectjVersion = '1.8.10'
+    aspectjVersion = '1.9.4'
 }
 
 ext {
